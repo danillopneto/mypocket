@@ -4,5 +4,8 @@
     </mat-card-title>
     <mat-card-subtitle class="subtitle">
         Sistema para exemplificar a construção de um cadastro em Angular.
-    </mat-card-subtitle>
+    </mat-card-subtitle>    
+    <ul>
+        <li *myFor="let numero em [1, 2, 3]">{{ numero }}</li>
+    </ul>
 </mat-card>
