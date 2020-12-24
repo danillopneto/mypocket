@@ -27,7 +27,7 @@ export class ProductCreateComponent implements OnInit {
 
   createProduct(): void {
     this.productService.create(this.product).subscribe(() => {
-      this.messageService.showMessage('Produto {product.name} criado!');
+      this.messageService.showMessage(`Produto ${this.product.name} criado!`);
       this.cancel();
     });
   }

@@ -20,7 +20,7 @@ export class ProductReadComponent implements OnInit {
   table!: MatTable<Product>;
   dataSource!: ProductReadDataSource;
 
-  displayedColumns = ['id', 'name', 'price'];
+  displayedColumns = ['id', 'name', 'price', 'action'];
 
   constructor(private productService: ProductService) { }
 
