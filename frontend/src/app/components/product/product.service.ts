@@ -12,7 +12,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
-  create(product: Product) : Observable<Product> {
+  create(product: Product): Observable<Product> {
     return this.http.post<Product>(this.baseUrl, product);
   }
 
@@ -25,8 +25,13 @@ export class ProductService {
     return this.http.get<Product>(url);
   }
 
-  update(product: Product) : Observable<Product> {
+  update(product: Product): Observable<Product> {
     const url = `${this.baseUrl}/${product.id}`;
     return this.http.put<Product>(url, product);
+  }
+
+  delete(id: string): void {
+    const url = `${this.baseUrl}/${id}`;
+    this.http.delete(url);
   }
 }

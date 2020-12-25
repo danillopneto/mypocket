@@ -42,7 +42,7 @@ export class ProductReadDataSource extends DataSource<Product> {
    *  Called when the table is being destroyed. Use this function, to clean up
    * any open connections or free any held resources that were set up during connect.
    */
-  disconnect() {}
+  disconnect() { }
 
   /**
    * Paginate the data (client-side). If you're using server-side pagination,
@@ -66,11 +66,15 @@ export class ProductReadDataSource extends DataSource<Product> {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
         case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+a.id, +b.id, isAsc);
-        case 'price': return compare(+a.id, +b.id, isAsc);
+        case 'id': return compare(+this.fixValue(a.id), +this.fixValue(b.id), isAsc);
+        case 'price': return compare(+this.fixValue(a.price), +this.fixValue(b.price), isAsc);
         default: return 0;
       }
     });
+  }
+
+  private fixValue(value: number | undefined | null): number {
+    return value != null && value != undefined ? value : 0;
   }
 }
 
