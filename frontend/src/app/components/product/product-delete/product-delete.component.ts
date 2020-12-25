@@ -12,13 +12,13 @@ import { MessageService } from '../../messages/message.service';
 export class ProductDeleteComponent implements OnInit {
 
   product!: Product;
-  productId!: string;
+  productId!: number;
 
   constructor(
     public dialogRef: MatDialogRef<ProductDeleteComponent>,
     private productService: ProductService,
     private messageService: MessageService,
-    @Inject(MAT_DIALOG_DATA) public data: string) {
+    @Inject(MAT_DIALOG_DATA) public data: number) {
     this.productId = data;
   }
 
@@ -29,7 +29,7 @@ export class ProductDeleteComponent implements OnInit {
   }
 
   deleteProduct() {
-    this.productService.delete(this.product.id!.toString()).subscribe(() => {
+    this.productService.delete(this.product.id!).subscribe(() => {
       this.messageService.showMessage(`O produto ${this.product!.name} foi excluído!`);
       this.dialogRef.close(true);
     });
