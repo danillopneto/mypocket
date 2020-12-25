@@ -42,6 +42,19 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 
+/* External */
+import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+
+export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
+  align: "left",
+  allowNegative: true,
+  decimal: ",",
+  precision: 2,
+  prefix: "R$ ",
+  suffix: "",
+  thousands: "."
+};
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,17 +88,13 @@ import { ProductDeleteComponent } from './components/product/product-delete/prod
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
-    MatDialogModule
+    MatDialogModule,
+    CurrencyMaskModule
   ],
   providers: [
-    {
-      provide: LOCALE_ID,
-      useValue: 'pt-BR'
-    },
-    {
-      provide: MAT_DIALOG_DEFAULT_OPTIONS,
-      useValue: { hasBackdrop: false }
-    }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    { provide: CURRENCY_MASK_CONFIG, useValue: CustomCurrencyMaskConfig }
   ],
   bootstrap: [AppComponent]
 })
