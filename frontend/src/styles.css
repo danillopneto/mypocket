@@ -17,6 +17,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 	color: #fff;
 }
 
+.msg-success .mat-simple-snackbar span.mat-button-wrapper,
+.msg-error .mat-simple-snackbar span.mat-button-wrapper {
+    color: white;
+}
+
 .jumping {
 	transform: translate(0%, 0%);
 	animation: pop 1.3s infinite;
