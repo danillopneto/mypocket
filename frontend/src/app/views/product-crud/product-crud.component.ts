@@ -10,7 +10,7 @@ import { HeaderService } from 'src/app/components/template/header/header.service
 export class ProductCrudComponent implements OnInit {
 
   constructor(private router: Router, private headerService: HeaderService) {
-    this.headerService.setHeaderData('Cadastro de Produtos', 'storefront', '');
+    this.headerService.setHeaderData('Cadastro de Produtos', 'storefront', '/product');
   }
 
   ngOnInit(): void {
