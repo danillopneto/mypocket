@@ -12,7 +12,8 @@ import { ProductService } from '../product.service';
 export class ProductUpdateComponent implements OnInit {
 
   product: Product = {
-    name: '',
+    id: '',
+    description: '',
     price: null
   };
 
@@ -27,15 +28,17 @@ export class ProductUpdateComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id != null) {
-      this.productService.readById(+id).subscribe(product => {
-        this.product = product;
+      this.productService.get(id).subscribe(product => {
+        if (product != null) {
+          this.product = product;
+        }
       });
     }
   }
 
   updateProduct(): void {
-    this.productService.update(this.product).subscribe(() => {
-      this.messageService.showMessage(`Produto ${this.product.name} atualizado!`);
+    this.productService.save(this.product).then(() => {
+      this.messageService.showMessage(`Produto ${this.product!.description} atualizado!`);
       this.cancel();
     });
   }

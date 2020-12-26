@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
+import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,8 +43,12 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ProductDeleteComponent } from './components/product/product-delete/product-delete.component';
 
-/* External */
+/* Plugins */
 import { CurrencyMaskConfig, CurrencyMaskModule, CURRENCY_MASK_CONFIG } from 'ng2-currency-mask';
+
+/* Firebase */
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
   align: "left",
@@ -89,7 +94,10 @@ export const CustomCurrencyMaskConfig: CurrencyMaskConfig = {
     MatPaginatorModule,
     MatSortModule,
     MatDialogModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [
     { provide: LOCALE_ID, useValue: 'pt-BR' },

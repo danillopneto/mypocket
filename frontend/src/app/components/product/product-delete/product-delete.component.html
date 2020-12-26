@@ -1,7 +1,7 @@
 <div [hidden]="product == null">
     <h1 mat-dialog-title>Exclusão</h1>
     <div mat-dialog-content>
-        <p>Deseja realmente excluir o produto {{ product != null ? product!.name : '' }}?</p>
+        <p>Deseja realmente excluir o produto {{ product != null ? product!.description : '' }}?</p>
     </div>
     <div mat-dialog-actions>
         <button mat-button mat-raised-button mat-dialog-close>Não</button>

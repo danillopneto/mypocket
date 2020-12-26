@@ -23,7 +23,7 @@ export class ProductReadComponent implements OnInit {
   table!: MatTable<Product>;
   dataSource!: ProductReadDataSource;
 
-  displayedColumns = ['id', 'name', 'price', 'action'];
+  displayedColumns = ['description', 'price', 'action'];
 
   constructor(
     private productService: ProductService,
@@ -35,7 +35,7 @@ export class ProductReadComponent implements OnInit {
   }
 
   loadProducts(): void {
-    this.productService.read().subscribe(products => {
+    this.productService.getAll().subscribe(products => {
       this.setTableData(products);
     });
   }

@@ -12,25 +12,27 @@ import { MessageService } from '../../messages/message.service';
 export class ProductDeleteComponent implements OnInit {
 
   product!: Product;
-  productId!: number;
+  productId!: string;
 
   constructor(
     public dialogRef: MatDialogRef<ProductDeleteComponent>,
     private productService: ProductService,
     private messageService: MessageService,
-    @Inject(MAT_DIALOG_DATA) public data: number) {
+    @Inject(MAT_DIALOG_DATA) public data: string) {
     this.productId = data;
   }
 
   ngOnInit(): void {
-    this.productService.readById(this.productId).subscribe(product => {
-      this.product = product;
+    this.productService.get(this.productId).subscribe(product => {
+      if (product != null) {
+        this.product = product;
+      }
     });
   }
 
   deleteProduct() {
-    this.productService.delete(this.product.id!).subscribe(() => {
-      this.messageService.showMessage(`O produto ${this.product!.name} foi excluído!`);
+    this.productService.delete(this.product!.id!).then(() => {
+      this.messageService.showMessage(`O produto ${this.product!.description} foi excluído!`);
       this.dialogRef.close(true);
     });
   }

@@ -65,8 +65,7 @@ export class ProductReadDataSource extends DataSource<Product> {
     return data.sort((a, b) => {
       const isAsc = this.sort.direction === 'asc';
       switch (this.sort.active) {
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'id': return compare(+this.fixValue(a.id), +this.fixValue(b.id), isAsc);
+        case 'description': return compare(a.description, b.description, isAsc);
         case 'price': return compare(+this.fixValue(a.price), +this.fixValue(b.price), isAsc);
         default: return 0;
       }
@@ -80,5 +79,13 @@ export class ProductReadDataSource extends DataSource<Product> {
 
 /** Simple sort comparator for example ID/Name columns (for client-side sorting). */
 function compare(a: string | number, b: string | number, isAsc: boolean) {
+  if (typeof(a) =="string") {
+    a = a.toUpperCase();
+  }
+
+  if (typeof(b) == "string"){
+    b = b.toUpperCase();
+  }
+  
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
